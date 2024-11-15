@@ -2,14 +2,12 @@ package com.email.validator;
 
 public class EmailValidator {
 
-    //tested status OK
     public boolean hasLocalPart(String email) {
         int index = email.indexOf ("@");
         return index > 0;
     }
 
 
-    //tested status OK
     public boolean hasDomainPart(String email) {
             int index = email.indexOf ("@");
             if(index != -1 && index < email.length() - 1) {
@@ -20,7 +18,6 @@ public class EmailValidator {
     }
 
 
-    //tested status OK
     public boolean hasDisallowedSymbols(String email) {
         String disallowedSymbols = "!;,";
         int emailLength = email.length ();
@@ -40,7 +37,6 @@ public class EmailValidator {
     c.Check if there is a valid IP address between these brackets.
      */
 
-    //tested OK
     public boolean hasIpAddressInDomain(String email) {
         boolean hasDomain = hasDomainPart (email);
         if (!hasDomain) {
@@ -55,6 +51,7 @@ public class EmailValidator {
         return isValidDomain (domainPart);
     }
 
+
     private boolean isValidDomain(String domain) {
         if(domain.equals ("gmail.com") || domain.equals ("yahoo.com") || domain.equals ("hotmain.com") || domain.equals ("outlook.com")) {
             return true;
@@ -66,6 +63,7 @@ public class EmailValidator {
 
         return false;
     }
+
 
     private boolean isValidIp(String ipAddress) {
         String[] partsOfIp = ipAddress.split ("\\."); //devide ip in 4 parts(split by points)
@@ -132,7 +130,7 @@ public class EmailValidator {
         return true;
     }
 
-    //tested status OK
+
     public boolean isLocalPartValid(String email) {
         // extract local part from email
        String localPart = email.substring(0, email.indexOf ("@"));
@@ -156,7 +154,7 @@ public class EmailValidator {
         return true;
     }
 
-    //tested status OK
+
     public boolean isLengthValid(String email) {
         int emailLength = email.length ();
         if(emailLength <= 254) {
