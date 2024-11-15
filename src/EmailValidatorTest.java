@@ -3,6 +3,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+
+
 public class EmailValidatorTest {
     private EmailValidator emailValidator;
 
@@ -11,11 +13,13 @@ public class EmailValidatorTest {
         emailValidator = new EmailValidator ();
     }
 
+
     @Test
     public void testHasLocalPart() {
         assertTrue (emailValidator.hasLocalPart ("user@example.com"));
         assertFalse (emailValidator.hasLocalPart ("@example.com"));
     }
+
 
     @Test
     public void testHasDomainPart() {
@@ -26,6 +30,7 @@ public class EmailValidatorTest {
         assertFalse (emailValidator.hasDomainPart ("userexample.com"));
     }
 
+
     @Test
     public void testHasDisallowedSymbols() {
         assertFalse (emailValidator.hasDisallowedSymbols ("user@example.com"));
@@ -33,11 +38,13 @@ public class EmailValidatorTest {
         assertTrue (emailValidator.hasDisallowedSymbols ("user;@example.com"));
     }
 
+
     @Test
     public void testIsLengthValid() {
         assertTrue (emailValidator.isLengthValid ("user123@example.com"));
         assertFalse (emailValidator.isLengthValid ("u".repeat(255) + "@example.com"));
     }
+
 
     @Test
     public void testIsDomainPartValid() {
@@ -49,6 +56,7 @@ public class EmailValidatorTest {
         assertFalse (emailValidator.isDomainPartValid ("user@[192.168.0.01]"));
     }
 
+
     @Test
     public void testIsLocalPartValid() {
         assertTrue (emailValidator.isLocalPartValid ("user@example.com"));
@@ -57,11 +65,17 @@ public class EmailValidatorTest {
         assertFalse (emailValidator.isLocalPartValid ("@example.com"));
     }
 
+
     @Test
     public void testHasIpAddressInDomain() {
         assertTrue (emailValidator.hasIpAddressInDomain("user@[192.168.0.1]"));
     }
 
-    // testIsEmailValid TO DO
 
+    @Test
+    public void testIsEmailValid() {
+        assertTrue (emailValidator.isEmailValid ("user@gmail.com"));
+        assertTrue (emailValidator.isEmailValid ("user@[192.168.0.1]"));
+        assertFalse (emailValidator.isEmailValid ("user!@example.com"));
+    }
 }
