@@ -150,7 +150,7 @@ public class EmailValidator {
             return false;
         }
 
-        if(hasIpAddressInDomain (email) == false) {
+        if(!hasIpAddressInDomain(email)) {
             return false;
         }
         return true;
